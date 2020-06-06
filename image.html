@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/image.css"/>
+<body>
+
+<div>
+    <div class="container">
+        <div class="setting">
+            <div class="input-control">
+                <label for="timeout">请求过期时间（配置项 timeout, 默认 60000）:</label>
+                <input type="text" id="timeout" placeholder="输入过期时间, 单位毫秒">
+            </div>
+            <div class="input-control">
+                <label for="partSize">分片大小（配置项 partSize, 默认 1048576）:</label>
+                <input type="text" class="form-control" id="partSize" placeholder="输入分片大小, 单位bit, 最小100k">
+            </div>
+            <div class="input-control">
+                <label for="parallel">上传分片数（配置项 parallel, 默认 5）:</label>
+                <input type="text" class="form-control" id="parallel" placeholder="输入并行上传分片个数, 默认为5">
+            </div>
+            <div class="input-control">
+                <label for="retryCount">网络失败重试次数（配置项 retryCount, 默认 3）:</label>
+                <input type="text" class="form-control" id="retryCount" placeholder="输入网络失败重试次数, 默认为3">
+            </div>
+            <div class="input-control">
+                <label for="retryDuration">网络失败重试间隔（配置项 retryDuration, 默认 2）:</label>
+                <input type="text" class="form-control" id="retryDuration" placeholder="输入网络失败重试间隔, 默认2秒">
+            </div>
+            <div class="input-control">
+                <label for="region">配置项 region, 默认 cn-shanghai:</label>
+                <select id="region">
+                    <option>cn-shanghai</option>
+                    <option>eu-central-1</option>
+                    <option>ap-southeast-1</option>
+                </select>
+            </div>
+            <div class="input-control">
+                <label for="userId">阿里云账号ID:</label>
+                <input type="text" value="1494058750874094" disabled class="form-control" id="userId"
+                       placeholder="输入阿里云账号ID">
+                集成产品后需要使用用户自己的账号ID, <a href="https://help.aliyun.com/knowledge_detail/37196.html-"
+                                       target="_blank">如何获取帐号ID</a>
+            </div>
+        </div>
+        <div>
+            <div class="upload">
+                <div class="upload_one">
+                    <input type="file" id="fileUpload" class="button" multiple="multiple" accept="image/*">
+                </div>
+                <div class="upload_two">
+                    <span class="upload_two_span">排序号</span>
+                    <input type="text" class="form-control select1">
+                </div>
+                <div class="upload_two">
+                    <span class="upload_two_span">类别</span>
+                    <label>
+                        <select class="form-control select1">
+                            <option value="joint">joint</option>
+                            <option value="my">my</option>
+                            <option value="heart">heart</option>
+                        </select>
+                    </label>
+                </div>
+                <button id="stsUpload" disabled="false" class="button btn btn-default">开始上传</button>
+                <div>
+                    <label class="status">上传状态: <span id="status"></span></label>
+                    <span class="progress1">上传进度: <i id="sts-progress">0</i>%</span>
+                </div>
+            </div>
+            <!-- <div class="upload-type">
+                上传方式二, 使用 STSToken 上传:
+                <button id="stsUpload" disabled="false" class="button">开始上传</button>
+                <button id="pauseUpload" class="button">暂停</button>
+                <button id="resumeUpload" disabled="false" class="button">恢复上传</button>
+                <span class="progress">上传进度: <i id="sts-progress">0</i> %</span>
+            </div> -->
+            <!--        <div style="padding-top: 250px;padding-left: 550px;">-->
+            <!--            <button id="dd">退出</button>-->
+            <!--        </div>-->
+        </div>
+        <div class="info">点播STS参数如何获取，请查阅<a href="https://help.aliyun.com/document_detail/57114.html" target="_blakn">获取STS</a>
+        </div>
+    </div>
+    <div class="container2">
+        <div class="form-group">
+            <span class="container2_leibie">类别</span>
+            <!--<input type="text" class="form-control" style="width: auto;">-->
+            <select class="form-control  select2">
+                <option value="joint">joint</option>
+                <option value="my">my</option>
+                <option value="heart">heart</option>
+            </select>
+            <button class="btn btn-default container2_button" type="button">查询</button>
+            <button class="btn btn-default" type="button">新增</button>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>视频名称</th>
+                <th>文件名</th>
+                <th>排序号</th>
+                <th>时长</th>
+                <th>封面图</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="table_span" style=" line-height:2.6;">1</td>
+                <td style=" line-height: 2.6;">heart</td>
+                <td style=" line-height: 2.6;">heart.mp4</td>
+                <td style=" line-height: 2.6;">1</td>
+                <td style=" line-height: 2.6;">00:00:45</td>
+                <td></td>
+                <td>
+                    <button class="btn btn-default" type="button">编辑</button>
+                    <button class="btn btn-danger" type="button">删除</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+
+<!--<script type="text/javascript" src="./lib/jquery.min.js"></script>-->
+<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="./lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="./lib/aliyun-upload-sdk/aliyun-upload-sdk-1.5.0.min.js"></script>
+<script src="./lib/aliyun-upload-sdk/lib/es6-promise.min.js"></script>
+<script src="./lib/aliyun-upload-sdk/lib/aliyun-oss-sdk-5.3.1.min.js"></script>
+<script src="./js/image.js"></script>
+<!-- <script type="text/javascript" src="./lib/aliyun-upload-sdk.js"></script> -->
+</body>
+</html>
