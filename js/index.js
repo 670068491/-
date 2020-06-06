@@ -50,15 +50,13 @@ $(document).ready(function () {
                 // 如果是 STSToken 上传方式, 需要调用 uploader.setUploadAuthAndAddress 方法
                 // 用户需要自己获取 accessKeyId, accessKeySecret,secretToken
                 // 下面的 URL 只是测试接口, 用于获取 测试的 accessKeyId, accessKeySecret,secretToken
-
+                console.log(uploadInfo);
                 var stsUrl = "http://47.103.41.41:8083/api/AliSts/StsNetSdk";
                 $.getJSON(stsUrl, function (data) {
                     var info = JSON.parse(data);
-
                     var accessKeyId = info.AccessKeyId;
                     var accessKeySecret = info.AccessKeySecret;
                     var secretToken = info.SecurityToken;
-
                     uploader.setSTSToken(uploadInfo, accessKeyId, accessKeySecret, secretToken)
                 });
 
@@ -137,7 +135,6 @@ $(document).ready(function () {
 
     $('#fileUpload').on('change', function (e) {
         console.log(e);
-
         uploader = createUploader();
         // console.log(e.target.files.length);
         var file;
@@ -148,7 +145,6 @@ $(document).ready(function () {
             var Title = e.target.files[i].name;
             var userData = '{"Vod":{"Title":"' + Title + '","CateId":"1000027679"}}';
             uploader.addFile(file, null, null, null, userData);
-
         }
         if (!file) {
             alert("请先选择需要上传的文件!");
@@ -169,7 +165,6 @@ $(document).ready(function () {
         //     log("file:" + list[i].file.name + ", status:" + list[i].state + ", endpoint:" + list[i].endpoint + ", bucket:" + list[i].bucket + ", object:" + list[i].object);
         // }
 
-
         // 首先调用 uploader.addFile(event.target.files[i], null, null, null, userData)
         //console.log(userData)
         $('#stsUpload').attr('disabled', false)
@@ -179,12 +174,6 @@ $(document).ready(function () {
     // 开始上传
     $('#stsUpload').on('click', function () {
         // 然后调用 startUpload 方法, 开始上传
-        console.log('1');
-        // uploader.listFiles();
-        // var list = uploader.listFiles();
-        // for (var i = 0; i < list.length; i++) {
-        //     console.log("file:" + list[i].file.name + ", status:" + list[i].state + ", endpoint:" + list[i].endpoint + ", bucket:" + list[i].bucket + ", object:" + list[i].object);
-        // }
 
         // if (uploader !== null) {
         uploader.startUpload()
@@ -208,7 +197,6 @@ $(document).ready(function () {
             $('#pauseUpload').attr('disabled', false)
         }
     });
-
 
     $('#dd').on('click', function () {
         // window.close();
