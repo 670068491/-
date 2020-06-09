@@ -25,7 +25,8 @@ $(document).ready(function () {
         $(".main").css("display", "none");
         $(".container").css("display", "block");
     });
-
+    var videoIds;
+    var uploader = null;
 
     /*** 创建一个上传对象
      * 使用 STSToken 上传方式*/
@@ -46,6 +47,7 @@ $(document).ready(function () {
                 console.log("addFileSuccess: " + uploadInfo.file.name)
             },
             // 开始上传
+
             onUploadstarted: function (uploadInfo) {
                 // 如果是 STSToken 上传方式, 需要调用 uploader.setUploadAuthAndAddress 方法
                 // 用户需要自己获取 accessKeyId, accessKeySecret,secretToken
@@ -61,6 +63,10 @@ $(document).ready(function () {
                 });
 
 
+
+
+
+
                 $('#status').text('文件开始上传...')
                 console.log("onUploadStarted:" + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" +
                     uploadInfo.bucket + ", object:" + uploadInfo.object)
@@ -69,11 +75,9 @@ $(document).ready(function () {
             onUploadSucceed: function (uploadInfo) {
                 console.log("onUploadSucceed: " + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" +
                     uploadInfo.bucket + ", object:" + uploadInfo.object)
-                $('#status').text('文件上传成功!')
-
+                $('#status').text('文件上传成功!');
 
                 videoIds = uploadInfo.videoId;
-                //
                 console.log("videoIds:" + videoIds);
                 // console.log（(JSON.stringify(uploadInfo));
                 console.log(uploadInfo);
@@ -81,12 +85,12 @@ $(document).ready(function () {
             // 文件上传失败
             onUploadFailed: function (uploadInfo, code, message) {
                 console.log("onUploadFailed: file:" + uploadInfo.file.name + ",code:" + code + ", message:" + message)
-                $('#status').text('文件上传失败!')
+                $('#status').text('文件上传失败!');
             },
             // 取消文件上传
             onUploadCanceled: function (uploadInfo, code, message) {
                 console.log("Canceled file: " + uploadInfo.file.name + ", code: " + code + ", message:" + message)
-                $('#status').text('文件已暂停上传!')
+                $('#status').text('文件已暂停上传!');
 
             },
             // 文件上传进度，单位：字节, 可以在这个函数中拿到上传进度并显示在页面上
@@ -130,13 +134,11 @@ $(document).ready(function () {
         return uploader
     }
 
-    // var videoIds;
-    var uploader = null
 
     $('#fileUpload').on('change', function (e) {
         console.log(e);
         uploader = createUploader();
-        // console.log(e.target.files.length);
+        console.log(uploader);
         var file;
         for (let i = 0; i < e.target.files.length; i++) {
             // console.log("file:" + list[i].file.name + ", status:" + list[i].state + ", endpoint:" + list[i].endpoint + ", bucket:" + list[i].bucket + ", object:" + list[i].object);
@@ -146,30 +148,30 @@ $(document).ready(function () {
             var userData = '{"Vod":{"Title":"' + Title + '","CateId":"1000027679"}}';
             uploader.addFile(file, null, null, null, userData);
         }
-        if (!file) {
-            alert("请先选择需要上传的文件!");
-            return;
-        }
-        // console.log(file);
-
-        //console.log(Title);
-        if (uploader) {
-            uploader.stopUpload()
-            $('#sts-progress').text('0');
-            $('#status').text("");
-        }
-
-        // uploader.listFiles();
-        // var list = uploader.listFiles();
-        // for (var i = 0; i < list.length; i++) {
-        //     log("file:" + list[i].file.name + ", status:" + list[i].state + ", endpoint:" + list[i].endpoint + ", bucket:" + list[i].bucket + ", object:" + list[i].object);
+        // if (!file) {
+        //     alert("请先选择需要上传的文件!");
+        //     return;
         // }
-
-        // 首先调用 uploader.addFile(event.target.files[i], null, null, null, userData)
-        //console.log(userData)
-        $('#stsUpload').attr('disabled', false)
-        $('#pauseUpload').attr('disabled', true)
-        $('#resumeUpload').attr('disabled', true)
+        // // console.log(file);
+        //
+        // //console.log(Title);
+        // if (uploader) {
+        //     uploader.stopUpload()
+        //     $('#sts-progress').text('0');
+        //     $('#status').text("");
+        // }
+        //
+        // // uploader.listFiles();
+        // // var list = uploader.listFiles();
+        // // for (var i = 0; i < list.length; i++) {
+        // //     log("file:" + list[i].file.name + ", status:" + list[i].state + ", endpoint:" + list[i].endpoint + ", bucket:" + list[i].bucket + ", object:" + list[i].object);
+        // // }
+        //
+        // // 首先调用 uploader.addFile(event.target.files[i], null, null, null, userData)
+        // //console.log(userData)
+        // $('#stsUpload').attr('disabled', false)
+        // $('#pauseUpload').attr('disabled', true)
+        // $('#resumeUpload').attr('disabled', true)
     })
     // 开始上传
     $('#stsUpload').on('click', function () {

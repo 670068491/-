@@ -118,6 +118,7 @@
 .select1 {
     display: inline-block;
     width: auto;
+    font-size: 15px;
 }
 
 .container2 {
@@ -154,6 +155,7 @@
     /*width: auto;*/
     width: 100px;
     margin-right: 20px;
+    font-size: 15px;
 }
 .container2_button{
     margin-right: 20px;
