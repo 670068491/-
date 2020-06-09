@@ -395,7 +395,6 @@ $(document).ready(function () {
             // },
 
 
-
             //开始上传
             onUploadstarted: function (uploadInfo) {
                 console.log(uploadInfo)
@@ -409,12 +408,12 @@ $(document).ready(function () {
                     var createUrl = 'http://47.103.41.41:8086/api/ImageAuth/GetUploadAuth';
                     var title = uploadInfo.file.name;
                     console.log(title);
-                    $.get(createUrl, { Title: title }, function(data){
-                    // $.get(createUrl, function (data) {
+                    $.get(createUrl, {Title: title}, function (data) {
+                        // $.get(createUrl, function (data) {
                         var uploadAuth = data.data.response.UploadAuth;
                         var uploadAddress = data.data.response.UploadAddress;
                         var videoId = data.data.response.ImageId;
-                        uploader.setUploadAuthAndAddress(uploadInfo, uploadAuth, uploadAddress,videoId)
+                        uploader.setUploadAuthAndAddress(uploadInfo, uploadAuth, uploadAddress, videoId)
                     }, 'json')
                     $('#status').text('文件开始上传...');
                     console.log("onUploadStarted:" + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" + uploadInfo.bucket + ", object:" + uploadInfo.object)
@@ -432,10 +431,6 @@ $(document).ready(function () {
 
                 $('#status').text('文件开始上传...')
                 console.log("onUploadStarted:" + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" + uploadInfo.bucket + ", object:" + uploadInfo.object)
-
-
-
-
 
 
                 // console.log(uploadInfo);
@@ -475,7 +470,6 @@ $(document).ready(function () {
             },
 
 
-
             // 文件上传成功
             onUploadSucceed: function (uploadInfo) {
                 console.log("onUploadSucceed: " + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" +
@@ -484,6 +478,28 @@ $(document).ready(function () {
 
 
                 videoIds = uploadInfo.videoId;
+
+
+                $.ajax({
+
+                    url: 'http://47.103.41.41:8086/api/Image/InsertImageInfo',
+                    datatype: "json",
+                    type: 'post',
+                    data: {"F_Order": 0, "F_Type": "map", "F_AliImageId": videoIds},
+                    success: function (e) {   //成功后回调
+                        alert(e);
+                        console.log(e)
+                    },
+                    error: function (e) {    //失败后回调
+                        // alert(e);
+                    },
+                    beforeSend: function () {
+                        // /发送请求前调用，可以放一些"正在加载"之类额话
+                        // alert("正在加载");
+                    }
+                })
+
+
                 //
                 console.log("videoIds:" + videoIds);
                 // console.log（(JSON.stringify(uploadInfo));
@@ -607,7 +623,6 @@ $(document).ready(function () {
             $('#pauseUpload').attr('disabled', false)
         }
     });
-
 
 
 })

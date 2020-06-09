@@ -92,7 +92,7 @@ $(document).ready(function () {
                 //     //这里显示返回的状态
                 //     // alert(state);
                 // }, "json");
-              
+
                 $.ajax({
                     url: 'http://47.103.41.41:8086/api/Video/InsertVideoInfo',
                     datatype: "json",
