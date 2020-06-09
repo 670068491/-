@@ -92,12 +92,12 @@ $(document).ready(function () {
                 //     //这里显示返回的状态
                 //     // alert(state);
                 // }, "json");
-                alert('1')
+              
                 $.ajax({
                     url: 'http://47.103.41.41:8086/api/Video/InsertVideoInfo',
                     datatype: "json",
                     type: 'post',
-                    data: {  "F_Order": 0,  "F_Type": "my","F_AliVideoId": videoIds},
+                    data: {"F_Order": 0, "F_Type": "my", "F_AliVideoId": videoIds},
                     success: function (e) {   //成功后回调
                         alert(e);
                         console.log(e)
@@ -106,7 +106,7 @@ $(document).ready(function () {
                         // alert(e);
                     },
                     beforeSend: function () {
-                        /发送请求前调用，可以放一些"正在加载"之类额话
+                        // /发送请求前调用，可以放一些"正在加载"之类额话
                         // alert("正在加载");
                     }
                 })
