@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e79e4768-7870-4f18-8b49-88f2dd95d2c1" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/image.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/image.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image.html" beforeDir="false" afterPath="$PROJECT_DIR$/image.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/image.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/image.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +72,8 @@
       <option name="presentableId" value="Default" />
       <updated>1591357537289</updated>
       <workItem from="1591357538421" duration="24653000" />
-      <workItem from="1591450299125" duration="14811000" />
+      <workItem from="1591450299125" duration="16065000" />
+      <workItem from="1591689487083" duration="5496000" />
     </task>
     <servers />
   </component>
@@ -88,6 +85,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="180" key="#Chrome_Settings/0.0.1920.1040@0.0.1920.1040" timestamp="1591610561589" />
+    <state x="588" y="114" key="CommitChangelistDialog2" timestamp="1591693622417">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="588" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1591693622417" />
     <state x="740" y="262" key="FileChooserDialogImpl" timestamp="1591610537549">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

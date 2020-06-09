@@ -24,6 +24,8 @@ $(document).ready(function () {
         // console.log('1');
         $(".main").css("display", "none");
         $(".container").css("display", "block");
+
+
     });
     var videoIds;
     var uploader = null;
@@ -63,22 +65,52 @@ $(document).ready(function () {
                 });
 
 
-
-
-
-
                 $('#status').text('文件开始上传...')
                 console.log("onUploadStarted:" + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" +
                     uploadInfo.bucket + ", object:" + uploadInfo.object)
             },
             // 文件上传成功
             onUploadSucceed: function (uploadInfo) {
-                console.log("onUploadSucceed: " + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" +
-                    uploadInfo.bucket + ", object:" + uploadInfo.object)
+                console.log("onUploadSucceed: " + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" + uploadInfo.bucket + ", object:" + uploadInfo.object)
                 $('#status').text('文件上传成功!');
 
                 videoIds = uploadInfo.videoId;
                 console.log("videoIds:" + videoIds);
+
+                var videoInfo = {
+                    "F_Order": 0,
+                    "F_Type": "my",
+                    "F_AliVideoId": videoIds
+                }
+                // $.post("http://47.103.41.41:8086/api/Video/InsertVideoInfo", {
+                //     videoInfo
+                // }, function (data, state) {
+                //     console.log(data)
+                //     console.log(state)
+                //     //这里显示从服务器返回的数据
+                //     // alert(data);
+                //     //这里显示返回的状态
+                //     // alert(state);
+                // }, "json");
+                alert('1')
+                $.ajax({
+                    url: 'http://47.103.41.41:8086/api/Video/InsertVideoInfo',
+                    datatype: "json",
+                    type: 'post',
+                    data: {  "F_Order": 0,  "F_Type": "my","F_AliVideoId": videoIds},
+                    success: function (e) {   //成功后回调
+                        alert(e);
+                        console.log(e)
+                    },
+                    error: function (e) {    //失败后回调
+                        // alert(e);
+                    },
+                    beforeSend: function () {
+                        /发送请求前调用，可以放一些"正在加载"之类额话
+                        // alert("正在加载");
+                    }
+                })
+
                 // console.log（(JSON.stringify(uploadInfo));
                 console.log(uploadInfo);
             },
@@ -128,7 +160,6 @@ $(document).ready(function () {
                 $('#status').text('文件上传完毕!')
                 console.log("onUploadEnd: uploaded all the files")
 
-
             }
         })
         return uploader
@@ -148,35 +179,27 @@ $(document).ready(function () {
             var userData = '{"Vod":{"Title":"' + Title + '","CateId":"1000027679"}}';
             uploader.addFile(file, null, null, null, userData);
         }
+
+        if (uploader) {
+            uploader.stopUpload()
+            $('#sts-progress').text('0');
+            $('#status').text("");
+        }
         // if (!file) {
         //     alert("请先选择需要上传的文件!");
         //     return;
         // }
-        // // console.log(file);
-        //
-        // //console.log(Title);
-        // if (uploader) {
-        //     uploader.stopUpload()
-        //     $('#sts-progress').text('0');
-        //     $('#status').text("");
-        // }
-        //
-        // // uploader.listFiles();
-        // // var list = uploader.listFiles();
-        // // for (var i = 0; i < list.length; i++) {
-        // //     log("file:" + list[i].file.name + ", status:" + list[i].state + ", endpoint:" + list[i].endpoint + ", bucket:" + list[i].bucket + ", object:" + list[i].object);
-        // // }
-        //
+        //console.log(file);
+        //console.log(Title);
+        $('#stsUpload').attr('disabled', false)
+        $('#pauseUpload').attr('disabled', true)
+        $('#resumeUpload').attr('disabled', true)
         // // 首先调用 uploader.addFile(event.target.files[i], null, null, null, userData)
         // //console.log(userData)
-        // $('#stsUpload').attr('disabled', false)
-        // $('#pauseUpload').attr('disabled', true)
-        // $('#resumeUpload').attr('disabled', true)
     })
     // 开始上传
     $('#stsUpload').on('click', function () {
         // 然后调用 startUpload 方法, 开始上传
-
         // if (uploader !== null) {
         uploader.startUpload()
         $('#stsUpload').attr('disabled', true)
