@@ -2,7 +2,7 @@
     width: 1200px;
     margin: 0 auto;
     display: flex;
-    display: none;
+    /*display: none;*/
 }
 
 .upVideo {
@@ -21,6 +21,10 @@
     color: white;
     margin-top: 10vw;
     margin-left: 21vw;
+}
+
+.contain {
+    display: none;
 }
 
 .container {
@@ -155,10 +159,12 @@
     width: 100px;
     margin-right: 20px;
 }
-.container2_button{
+
+.container2_button {
     margin-right: 20px;
 
 }
+
 .table_span {
     /*line-height: 2px;*/
 }

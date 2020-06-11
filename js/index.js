@@ -20,10 +20,42 @@ if (!FileReader.prototype.readAsBinaryString) {
 
 
 $(document).ready(function () {
+    var oNum =1 ;
+
     $(".upVideo").click(function () {
         // console.log('1');
         $(".main").css("display", "none");
-        $(".container").css("display", "block");
+        $(".contain").css("display", "block");
+        $.getJSON("http://47.103.41.41:8086/api/Video/GetVideoInfoList", {
+            F_Type: "my",
+            "pagination.rows": 5,
+            "pagination.page": 1
+        }, function (data) {
+            console.log(data);
+            var htmlStr = ``;
+            for (var i = 0; i <data.data.rows.length ; i++) {
+            htmlStr += `<tr>
+                <td class="table_span" style=" line-height:2.6;">${oNum}</td>
+                <td style=" line-height: 2.6;">${oNum}</td>
+                <td style=" line-height: 2.6;">heart.mp4</td>
+                <td style=" line-height: 2.6;">1</td>
+                <td style=" line-height: 2.6;">00:00:45</td>
+                <td></td>
+                <td>
+                    <button class="btn btn-default" type="button">编辑</button>
+                    <button class="btn btn-danger" type="button">删除</button>
+                </td>
+            </tr>
+
+<div class="node_small" id="${'o' + [i]}">
+						<span class="string_span">节点${[i+1]}</span>
+						<button class="node_small_del">删除</button>
+						<div class="strip">
+							<div class="strip_head"><img src="./img/33.png" class="strip_head_img"></div>
+							<div class="strip_one">`
+            }
+
+        });
 
 
     });
@@ -34,23 +66,27 @@ $(document).ready(function () {
      * 使用 STSToken 上传方式*/
     function createUploader() {
         var uploader = new AliyunUpload.Vod({
-            timeout: $('#timeout').val() || 60000,
-            partSize: $('#partSize').val() || 1048576,
-            parallel: $('#parallel').val() || 5,
-            retryCount: $('#retryCount').val() || 3,
-            retryDuration: $('#retryDuration').val() || 2,
-            region: $('#region').val(),
-            userId: $('#userId').val(),
-            // 添加文件成功
-            addFileSuccess: function (uploadInfo) {
-                $('#stsUpload').attr('disabled', false)
-                $('#resumeUpload').attr('disabled', false)
-                $('#status').text('添加文件成功, 等待上传...')
-                console.log("addFileSuccess: " + uploadInfo.file.name)
+            timeout: 60000,
+            partSize: 1048576,
+            parallel: 5,
+            retryCount: 3,
+            retryDuration: 2,
+            region: cn-shanghai,
+            userId: 1494058750874094,
+            // timeout: $('#timeout').val() || 60000,
+            // partSize: $('#partSize').val() || 1048576,
+            // parallel: $('#parallel').val() || 5,
+            // retryCount: $('#retryCount').val() || 3,
+            // retryDuration: $('#retryDuration').val() || 2,
+            // region: $('#region').val(),
+            // userId: $('#userId').val(),
+            addFileSuccess: function (uploadInfo) {    // 添加文件成功
+                $('#stsUpload').attr('disabled', false);
+                $('#resumeUpload').attr('disabled', false);
+                $('#status').text('添加文件成功, 等待上传...');
+                console.log("addFileSuccess: " + uploadInfo.file.name);
             },
-            // 开始上传
-
-            onUploadstarted: function (uploadInfo) {
+            onUploadstarted: function (uploadInfo) {    // 开始上传
                 // 如果是 STSToken 上传方式, 需要调用 uploader.setUploadAuthAndAddress 方法
                 // 用户需要自己获取 accessKeyId, accessKeySecret,secretToken
                 // 下面的 URL 只是测试接口, 用于获取 测试的 accessKeyId, accessKeySecret,secretToken
@@ -64,34 +100,16 @@ $(document).ready(function () {
                     uploader.setSTSToken(uploadInfo, accessKeyId, accessKeySecret, secretToken)
                 });
 
-
-                $('#status').text('文件开始上传...')
-                console.log("onUploadStarted:" + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" +
-                    uploadInfo.bucket + ", object:" + uploadInfo.object)
+                $('#status').text('文件开始上传...');
+                console.log("onUploadStarted:" + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" + uploadInfo.bucket + ", object:" + uploadInfo.object)
             },
             // 文件上传成功
             onUploadSucceed: function (uploadInfo) {
                 console.log("onUploadSucceed: " + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" + uploadInfo.bucket + ", object:" + uploadInfo.object)
                 $('#status').text('文件上传成功!');
-
                 videoIds = uploadInfo.videoId;
                 console.log("videoIds:" + videoIds);
 
-                var videoInfo = {
-                    "F_Order": 0,
-                    "F_Type": "my",
-                    "F_AliVideoId": videoIds
-                }
-                // $.post("http://47.103.41.41:8086/api/Video/InsertVideoInfo", {
-                //     videoInfo
-                // }, function (data, state) {
-                //     console.log(data)
-                //     console.log(state)
-                //     //这里显示从服务器返回的数据
-                //     // alert(data);
-                //     //这里显示返回的状态
-                //     // alert(state);
-                // }, "json");
 
                 $.ajax({
                     url: 'http://47.103.41.41:8086/api/Video/InsertVideoInfo',
@@ -99,7 +117,7 @@ $(document).ready(function () {
                     type: 'post',
                     data: {"F_Order": 0, "F_Type": "my", "F_AliVideoId": videoIds},
                     success: function (e) {   //成功后回调
-                        alert(e);
+
                         console.log(e)
                     },
                     error: function (e) {    //失败后回调

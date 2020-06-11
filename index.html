@@ -11,7 +11,7 @@
     <div class="upVideo">上传视频</div>
     <div class="upImage">上传图片</div>
 </div>
-<div>
+<div class="contain">
     <div class="container">
         <div class="setting">
             <div class="input-control">
@@ -56,10 +56,6 @@
                     <!--<input type="file" id="fileUpload" class="button" multiple="multiple" >-->
                 </div>
                 <div class="upload_two">
-                    <span class="upload_two_span">排序号</span>
-                    <input type="text" class="form-control select1">
-                </div>
-                <div class="upload_two">
                     <span class="upload_two_span">类别</span>
                     <label>
                         <select class="form-control select1">
@@ -68,6 +64,10 @@
                             <option value="heart">heart</option>
                         </select>
                     </label>
+                </div>
+                <div class="upload_two">
+                    <span class="upload_two_span">排序号</span>
+                    <input type="text" class="form-control select1">
                 </div>
                 <button id="stsUpload" disabled="false" class="button btn btn-default">开始上传</button>
                 <div>
@@ -113,7 +113,7 @@
                 <th>操作</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="table_tbody">
             <tr>
                 <td class="table_span" style=" line-height:2.6;">1</td>
                 <td style=" line-height: 2.6;">heart</td>
