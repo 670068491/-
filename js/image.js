@@ -354,47 +354,33 @@ if (!FileReader.prototype.readAsBinaryString) {
 $(document).ready(function () {
     var videoIds;
     var uploader = null;
+    var oNum = 1;
 
-    /*** 创建一个上传对象
-     * 使用 STSToken 上传方式*/
+    /*** 创建一个上传对象***/
     function createUploader() {
         var uploader = new AliyunUpload.Vod({
-            timeout: $('#timeout').val() || 60000,
-            partSize: $('#partSize').val() || 1048576,
-            parallel: $('#parallel').val() || 5,
-            retryCount: $('#retryCount').val() || 3,
-            retryDuration: $('#retryDuration').val() || 2,
-            region: $('#region').val(),
-            userId: $('#userId').val(),
+            // timeout: $('#timeout').val() || 60000,
+            // partSize: $('#partSize').val() || 1048576,
+            // parallel: $('#parallel').val() || 5,
+            // retryCount: $('#retryCount').val() || 3,
+            // retryDuration: $('#retryDuration').val() || 2,
+            // region: $('#region').val(),
+            // userId: $('#userId').val(),
+            timeout: 60000,
+            partSize: 1048576,
+            parallel: 5,
+            retryCount: 3,
+            retryDuration: 2,
+            region: "cn-shanghai",
+            userId: 1494058750874094,
+
             // 添加文件成功
             addFileSuccess: function (uploadInfo) {
-                $('#stsUpload').attr('disabled', false)
-                $('#resumeUpload').attr('disabled', false)
-                $('#status').text('添加文件成功, 等待上传...')
-                console.log("addFileSuccess: " + uploadInfo.file.name)
+                $('#stsUpload').attr('disabled', false);
+                // $('#resumeUpload').attr('disabled', false);
+                $('#status').text('添加文件成功, 等待上传...');
+                console.log("addFileSuccess: " + uploadInfo.file.name);
             },
-            // 开始上传
-            // onUploadstarted: function (uploadInfo) {
-            //     // 如果是 STSToken 上传方式, 需要调用 uploader.setUploadAuthAndAddress 方法
-            //     // 用户需要自己获取 accessKeyId, accessKeySecret,secretToken
-            //     // 下面的 URL 只是测试接口, 用于获取 测试的 accessKeyId, accessKeySecret,secretToken
-            //     console.log(uploadInfo);
-            //     var stsUrl = "http://47.103.41.41:8083/api/AliSts/StsNetSdk";
-            //     $.getJSON(stsUrl, function (data) {
-            //         var info = JSON.parse(data);
-            //         var accessKeyId = info.AccessKeyId;
-            //         var accessKeySecret = info.AccessKeySecret;
-            //         var secretToken = info.SecurityToken;
-            //         uploader.setSTSToken(uploadInfo, accessKeyId, accessKeySecret, secretToken)
-            //     });
-            //
-            //
-            //     $('#status').text('文件开始上传...')
-            //     console.log("onUploadStarted:" + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" +
-            //         uploadInfo.bucket + ", object:" + uploadInfo.object)
-            // },
-
-
             //开始上传
             onUploadstarted: function (uploadInfo) {
                 console.log(uploadInfo)
@@ -431,7 +417,6 @@ $(document).ready(function () {
 
                 $('#status').text('文件开始上传...')
                 console.log("onUploadStarted:" + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" + uploadInfo.bucket + ", object:" + uploadInfo.object)
-
 
                 // console.log(uploadInfo);
                 // console.log("onUploadStarted:" + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" + uploadInfo.bucket + ", object:" + uploadInfo.object);
@@ -472,16 +457,12 @@ $(document).ready(function () {
 
             // 文件上传成功
             onUploadSucceed: function (uploadInfo) {
-                console.log("onUploadSucceed: " + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" +
-                    uploadInfo.bucket + ", object:" + uploadInfo.object)
-                $('#status').text('文件上传成功!')
-
+                console.log("onUploadSucceed: " + uploadInfo.file.name + ", endpoint:" + uploadInfo.endpoint + ", bucket:" + uploadInfo.bucket + ", object:" + uploadInfo.object)
+                $('#status').text('文件上传成功!');
+                $('#F_Order').val('');
 
                 videoIds = uploadInfo.videoId;
-
-
                 $.ajax({
-
                     url: 'http://47.103.41.41:8086/api/Image/InsertImageInfo',
                     datatype: "json",
                     type: 'post',

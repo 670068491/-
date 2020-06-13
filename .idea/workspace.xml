@@ -4,7 +4,9 @@
     <list default="true" id="e79e4768-7870-4f18-8b49-88f2dd95d2c1" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image.html" beforeDir="false" afterPath="$PROJECT_DIR$/image.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/image.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/image.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +53,16 @@
       <recent name="F:\HB\锐锘国资委\css" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="index.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/js/index.js" working-dir="$PROJECT_DIR$/js">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.index.js" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
       <list>
@@ -75,7 +87,7 @@
       <updated>1591357537289</updated>
       <workItem from="1591357538421" duration="24653000" />
       <workItem from="1591450299125" duration="16065000" />
-      <workItem from="1591689487083" duration="14720000" />
+      <workItem from="1591689487083" duration="63888000" />
     </task>
     <servers />
   </component>
@@ -99,6 +111,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="463" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1591610562099" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1592016713119">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1592016713119" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1591431747065">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
