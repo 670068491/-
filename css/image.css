@@ -1,166 +1,181 @@
 .main {
-    width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    display: none;
+	width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	display: none;
 }
 
 .upVideo {
-    /*position: absolute;*/
-    padding: 1vw 2vw;
-    background: #76AFFF;
-    font-size: 3vw;
-    color: white;
-    margin-top: 10vw;
+	/*position: absolute;*/
+	padding: 1vw 2vw;
+	background: #76AFFF;
+	font-size: 3vw;
+	color: white;
+	margin-top: 10vw;
 }
 
 .upImage {
-    padding: 1vw 2vw;
-    background: #76AFFF;
-    font-size: 3vw;
-    color: white;
-    margin-top: 10vw;
-    margin-left: 21vw;
+	padding: 1vw 2vw;
+	background: #76AFFF;
+	font-size: 3vw;
+	color: white;
+	margin-top: 10vw;
+	margin-left: 21vw;
 }
 
 .container {
-    width: 1300px;
-    margin: 0 auto;
-    background: #b6d5ff;
-    border-radius: 5px;
-    /*display: none;*/
+	width: 1300px;
+	margin: 0 auto;
+	background: #b6d5ff;
+	border-radius: 5px;
+	/*display: none;*/
 }
 
 .setting {
-    display: none;
+	display: none;
 }
 
 .input-control {
-    margin: 5px 0;
+	margin: 5px 0;
 }
 
 .input-control label {
-    font-size: 14px;
-    color: #333;
-    width: 30%;
-    text-align: right;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 10px;
+	font-size: 14px;
+	color: #333;
+	width: 30%;
+	text-align: right;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 10px;
 }
 
 .input-control input {
-    width: 30%;
-    height: 30px;
-    padding: 0 5px;
+	width: 30%;
+	height: 30px;
+	padding: 0 5px;
 }
 
 .upload {
-    padding: 20px 50px;
+	padding: 20px 50px;
 }
 
 .progress1 {
-    /* font-size: 14px; */
-    font-size: 30px;
+	/* font-size: 14px; */
+	font-size: 30px;
 }
 
 .progress i {
-    font-style: normal;
+	font-style: normal;
 }
 
 .upload-type {
-    color: #666;
-    font-size: 12px;
-    padding: 10px 0;
+	color: #666;
+	font-size: 12px;
+	padding: 10px 0;
 }
 
 .upload-type button {
-    margin: 0 10px 0 20px;
+	margin: 0 10px 0 20px;
 }
 
 .status {
-    font-size: 30px;
-    margin: 10px;
-    /* margin-left: 30px; */
+	font-size: 30px;
+	margin: 10px;
+	/* margin-left: 30px; */
 }
 
 .info {
-    font-size: 14px;
-    padding-left: 30px;
+	font-size: 14px;
+	padding-left: 30px;
 }
 
 .button {
-    /* background-image: url(img/anniu.png); */
-    border-radius: 5px;
-    background-color: #3366ff;
-    font-size: 30px;
-    color: white;
-    font-family: SimSun;
-    margin: 10px;
-    /* margin: 0px;
+	/* background-image: url(img/anniu.png); */
+	border-radius: 5px;
+	background-color: #3366ff;
+	font-size: 30px;
+	color: white;
+	font-family: SimSun;
+	margin: 10px;
+	/* margin: 0px;
     text-align: center; */
 }
 
-#dd {
-    border-radius: 10px;
-    background-color: #3366ff;
-    font-size: 30px;
-    color: white;
-    font-family: SimSun;
-    width: 200px;
-    /* 	width: 100px; */
+#quit {
+	margin-left: 20vw;
 }
 
+/*#dd {*/
+/*    border-radius: 10px;*/
+/*    background-color: #3366ff;*/
+/*    font-size: 30px;*/
+/*    color: white;*/
+/*    font-family: SimSun;*/
+/*    width: 200px;*/
+/*    !* 	width: 100px; *!*/
+/*}*/
+
 .info {
-    display: none;
+	display: none;
 }
 
 .select1 {
-    display: inline-block;
-    width: auto;
-    font-size: 15px;
+	display: inline-block;
+	width: auto;
+	font-size: 15px;
 }
 
 .container2 {
-    width: 1300px;
-    margin: 0 auto;
-    margin-top: 20px;
-    border-radius: 5px;
-    /*background: #b6d5ff;*/
-    /*display: none;*/
+	width: 1300px;
+	margin: 0 auto;
+	margin-top: 20px;
+	border-radius: 5px;
+	/*background: #b6d5ff;*/
+	/*display: none;*/
 }
 
 .container .upload_two {
-    padding-top: 8px;
+	padding-top: 8px;
 }
 
 .container .upload_two_span {
-    font-size: 20px;
-    color: black;
-    /*margin-top: 2px;*/
-    /* line-height: 10px;*/
-    padding-left: 10px;
-    padding-right: 10px;
-    font-weight: bold;
+	font-size: 20px;
+	color: black;
+	/*margin-top: 2px;*/
+	/* line-height: 10px;*/
+	padding-left: 10px;
+	padding-right: 10px;
+	font-weight: bold;
 }
 
 .container2 .container2_leibie {
-    font-size: 16px;
-    color: black;
-    padding-right: 28px;
+	font-size: 16px;
+	color: black;
+	padding-right: 28px;
 }
 
 .select2 {
-    display: inline-block;
-    /*width: auto;*/
-    width: 100px;
-    margin-right: 20px;
-    font-size: 15px;
+	display: inline-block;
+	/*width: auto;*/
+	width: 100px;
+	margin-right: 20px;
+	font-size: 15px;
 }
-.container2_button{
-    margin-right: 20px;
+
+.container2_button {
+	margin-right: 20px;
 
 }
+
+.td_image {
+	max-width: 36px;
+}
+
 .table_span {
-    /*line-height: 2px;*/
+	/*line-height: 2px;*/
+}
+
+#compile {
+	display: none;
+	/*visibility: hidden;*/
 }
