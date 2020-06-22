@@ -24,7 +24,7 @@ $(document).ready(function() {
 	var uploader = null;
 	var uploadingType;
 	var videoList = [];
-	var videoName = [];
+
 
 	$("#inquire").click(function() {
 		$('.table_tbody tr').remove();
@@ -54,6 +54,7 @@ $(document).ready(function() {
                 <td style=" line-height: 2.6;">${Hour + ':' + Minute + ':' + Second}</td>
                 <td style=" line-height: 2.6;">${data.data.rows[i].F_Type}</td>
                 <td></td>
+                <td style=" line-height: 2.6;">${data.data.rows[i].F_Screen}</td>
                 <td>
                     <button class="btn btn-default" type="button">编辑</button>
                     <button class="btn btn-danger" type="button">删除</button>
@@ -265,30 +266,29 @@ $(document).ready(function() {
 				//console.log("videoIds:" + videoIds);
 				// var F_Order = $('#F_Order').val();
 				var F_Type = $('#select1').val();
+				var F_Screen = $('#select2').val();
+
 				// console.log(F_Type);
 				console.log(uploadingType)
 				if (uploadingType == 'add') { //新增
 					$.post('http://47.103.41.41:8086/api/Video/InsertVideoInfo', {
-						"F_Order": videoName[0],
-						// "F_Order": F_Order,
-						"F_Type": F_Type,
-						"F_AliVideoId": videoIds
-					}, function(data) {
-						console.log(data);
-					}, 'json');
-					videoName.splice(0, 1);
-
-				} else if (uploadingType == 'edit') { //编辑
-					$.post('http://47.103.41.41:8086/api/Video/UpdateVideoInfo', {
-						"F_Order": videoName[0],
-						// "F_Order": F_Order,
+						"F_Order": 1,
 						"F_Type": F_Type,
 						"F_AliVideoId": videoIds,
-						"F_Id": editvideoIds
+						"F_Screen": F_Screen
 					}, function(data) {
 						console.log(data);
 					}, 'json');
-					videoName.splice(0, 1);
+				} else if (uploadingType == 'edit') { //编辑
+					$.post('http://47.103.41.41:8086/api/Video/UpdateVideoInfo', {
+						"F_Order": 1,
+						"F_Type": F_Type,
+						"F_AliVideoId": videoIds,
+						"F_Id": editvideoIds,
+						"F_Screen": F_Screen
+					}, function(data) {
+						console.log(data);
+					}, 'json');
 					$('.intro').parents("tr").css("background-color", "#ffffff");
 					$('.intro').removeClass("intro");
 				}
@@ -356,19 +356,15 @@ $(document).ready(function() {
 		console.log(uploader);
 		var file;
 		for (let i = 0; i < e.target.files.length; i++) {
-			// console.log("file:" + list[i].file.name + ", status:" + list[i].state + ", endpoint:" + list[i].endpoint + ", bucket:" + list[i].bucket + ", object:" + list[i].object);
-			//     var file = e.target.files[i];
 			file = e.target.files[i];
 			var Title = e.target.files[i].name;
-			let oname = e.target.files[i].name.substring(0, e.target.files[i].name.indexOf('.'));
-			let aname = oname.substring(oname.indexOf('_') + 1);
-			videoName.push(aname);
 			var userData = '{"Vod":{"Title":"' + Title + '","CateId":"1000027679"}}';
 			uploader.addFile(file, null, null, null, userData);
 			videoList.push(Title);
+			// console.log("file:" + list[i].file.name + ", status:" + list[i].state + ", endpoint:" + list[i].endpoint + ", bucket:" + list[i].bucket + ", object:" + list[i].object);
+			// var file = e.target.files[i];
 			// console.log(videoList);
 		}
-
 		if (uploader) {
 			uploader.stopUpload();
 			$('#sts-progress').text('0');
@@ -455,6 +451,7 @@ $(document).ready(function() {
 			// console.log(data);
 			// $('#F_Order').val(data.data.dt[0].F_Order);
 			$('#select1').val(data.data.dt[0].F_Type);
+			$('#select2').val(data.data.dt[0].F_Screen);
 		});
 		$(this).parents("tr").css("background-color", "#e5f58c");
 		$(this).addClass("intro");
